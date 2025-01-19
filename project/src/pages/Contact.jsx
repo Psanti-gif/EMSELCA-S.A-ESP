@@ -1,0 +1,116 @@
+import React from 'react';
+
+export default function Contact() {
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h1 className="text-3xl font-bold text-center mb-12">Contacto</h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 className="text-2xl font-semibold mb-6">Información de Contacto</h2>
+          
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-medium mb-2">Dirección Principal</h3>
+              <p className="text-gray-600">
+                [Dirección de la oficina principal]<br />
+                Chocó, Colombia
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-2">Teléfonos</h3>
+              <p className="text-gray-600">
+                Línea de Atención: (+57) XXX XXX XXXX<br />
+                Emergencias: (+57) XXX XXX XXXX
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-2">Correo Electrónico</h3>
+              <p className="text-gray-600">
+                Atención al Cliente: emselcasaesp@gmail.com<br />
+                PQRS: pqrs@emselca.com.co
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-2">Horario de Atención</h3>
+              <p className="text-gray-600">
+                Lunes a Viernes: 8:00 AM - 5:00 PM<br />
+                Sábados: 8:00 AM - 12:00 PM
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-semibold mb-6">Envíenos un Mensaje</h2>
+          
+          <form className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                Nombre Completo
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Correo Electrónico
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+                Asunto
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                Mensaje
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                required
+              ></textarea>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              >
+                Enviar Mensaje
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
