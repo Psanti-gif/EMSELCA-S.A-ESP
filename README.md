@@ -7,7 +7,7 @@ Instalar XAMPP
 
 Clonar el repositorio de Github en la carpeta de htdocs de xampp
 
-Para ejecutar el programa realizar los siguientes comandos en la carpeta de project:
+Para ejecutar el programa realizar los siguientes comandos desde la terminal, en la carpeta de project:
 
 npm install
 
