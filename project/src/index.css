@@ -2,8 +2,139 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Importar fuentes Century Gothic */
+@font-face {
+  font-family: 'Century Gothic';
+  src: url('/fonts/CenturyGothic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  src: url('/fonts/CenturyGothic-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  src: url('/fonts/CenturyGothic-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  src: url('/fonts/CenturyGothic-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
-  body {
-    @apply antialiased;
+  html {
+    @apply overflow-x-hidden;
+    width: 100vw;
+    font-family: 'Century Gothic', sans-serif;
   }
+  
+  body {
+    @apply antialiased overflow-x-hidden;
+    width: 100vw;
+    position: relative;
+    font-family: 'Century Gothic', sans-serif;
+  }
+
+  #root {
+    @apply overflow-x-hidden;
+    width: 100vw;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-extrabold;
+  }
+
+  .subtitle {
+    @apply font-semibold;
+  }
+}
+
+.animate-in {
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+.animate-in-card {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-in .animate-in-card {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+@keyframes count {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-count {
+  animation: count 1s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.animate-in .animate-count {
+  animation-play-state: running;
 }

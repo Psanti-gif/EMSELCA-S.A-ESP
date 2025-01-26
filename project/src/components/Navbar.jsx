@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Disclosure, Transition } from '@headlessui/react';
 import { FaBars, FaTimes, FaPhone, FaMapMarkerAlt, FaEnvelope, FaClock, FaFileAlt, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import Logo from './Logo';
 
 const navigation = [
   { name: 'Inicio', href: '/' },
@@ -30,7 +31,7 @@ export default function Navbar() {
       {/* Toggle button for top bar - Desktop version */}
       <button
         onClick={() => setIsTopBarOpen(!isTopBarOpen)}
-        className="absolute hidden sm:flex left-1/2 -translate-x-1/2 top-0 bg-green-700 text-white px-4 py-1 rounded-b-lg hover:bg-green-600 transition-colors items-center space-x-2 z-50"
+        className="absolute hidden xl:flex left-[45%] -translate-x-1/2 top-0 bg-emselca-blue text-white px-4 py-1 rounded-b-lg hover:bg-emselca-blue-light transition-colors items-center space-x-2 z-50"
       >
         <span className="text-sm font-medium">Información de Contacto</span>
         {isTopBarOpen ? (
@@ -40,10 +41,10 @@ export default function Navbar() {
         )}
       </button>
 
-      {/* Toggle button for top bar - Mobile version */}
+      {/* Toggle button for top bar - Mobile/Tablet version */}
       <button
         onClick={() => setIsTopBarOpen(!isTopBarOpen)}
-        className="sm:hidden fixed left-0 top-1/2 -translate-y-1/2 bg-green-700 text-white px-2 py-4 rounded-r-lg hover:bg-green-600 transition-colors z-50"
+        className="xl:hidden fixed left-0 top-1/2 -translate-y-1/2 bg-emselca-blue text-white px-2 py-4 rounded-r-lg hover:bg-emselca-blue-light transition-colors z-50"
       >
         {isTopBarOpen ? (
           <FaTimes className="h-5 w-5" />
@@ -53,7 +54,7 @@ export default function Navbar() {
       </button>
 
       {/* Top bar - Desktop version */}
-      <div className="hidden sm:block">
+      <div className="hidden xl:block">
         <Transition
           show={isTopBarOpen}
           enter="transition-transform duration-300 ease-out"
@@ -64,41 +65,41 @@ export default function Navbar() {
           leaveTo="-translate-y-full"
           className="relative"
         >
-          <div className="bg-green-700 text-white pt-8">
+          <div className="bg-gradient-primary text-white pt-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="py-2">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 items-center">
                   {/* Contact Information */}
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-6">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-start space-y-2 xl:space-y-0 xl:space-x-6">
                     <div className="flex items-center space-x-2 text-sm group">
-                      <FaPhone className="text-green-200 group-hover:text-white transition-colors" />
-                      <a href="tel:+576726789" className="hover:text-green-200 transition-colors">
+                      <FaPhone className="text-emselca-yellow group-hover:text-white transition-colors" />
+                      <a href="tel:+576726789" className="hover:text-emselca-yellow transition-colors">
                         (+57) 6726789
                       </a>
                     </div>
                     <div className="flex items-center space-x-2 text-sm group">
-                      <FaMapMarkerAlt className="text-green-200 group-hover:text-white transition-colors" />
-                      <span className="hover:text-green-200 transition-colors">
+                      <FaMapMarkerAlt className="text-emselca-yellow group-hover:text-white transition-colors" />
+                      <span className="hover:text-emselca-yellow transition-colors">
                         Chocó, Colombia
                       </span>
                     </div>
-                    <div className="hidden lg:flex items-center space-x-2 text-sm group">
-                      <FaClock className="text-green-200 group-hover:text-white transition-colors" />
-                      <span className="hover:text-green-200 transition-colors">
+                    <div className="flex items-center space-x-2 text-sm group">
+                      <FaClock className="text-emselca-yellow group-hover:text-white transition-colors" />
+                      <span className="hover:text-emselca-yellow transition-colors">
                         Lun - Vie: 8:00 - 17:00
                       </span>
                     </div>
                   </div>
 
                   {/* Quick Links */}
-                  <div className="flex justify-center sm:justify-end space-x-6">
+                  <div className="flex justify-center xl:justify-end space-x-6">
                     {topBarLinks.map((link) => (
                       <Link
                         key={link.name}
                         to={link.href}
-                        className="flex items-center space-x-1 text-sm group hover:text-green-200 transition-colors"
+                        className="flex items-center space-x-1 text-sm group hover:text-emselca-yellow transition-colors"
                       >
-                        <link.icon className="h-4 w-4 text-green-200 group-hover:text-white transition-colors" />
+                        <link.icon className="h-4 w-4 text-emselca-yellow group-hover:text-white transition-colors" />
                         <span>{link.name}</span>
                       </Link>
                     ))}
@@ -110,8 +111,8 @@ export default function Navbar() {
         </Transition>
       </div>
 
-      {/* Top bar - Mobile version */}
-      <div className="sm:hidden">
+      {/* Top bar - Mobile/Tablet version */}
+      <div className="xl:hidden">
         <Transition
           show={isTopBarOpen}
           enter="transition-transform duration-300 ease-out"
@@ -121,43 +122,43 @@ export default function Navbar() {
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-full"
         >
-          <div className="fixed inset-y-0 left-0 w-64 bg-green-700 text-white shadow-lg z-40">
-            <div className="p-4 space-y-6">
+          <div className="fixed inset-y-0 left-0 w-72 bg-gradient-primary text-white shadow-lg z-40">
+            <div className="p-6 space-y-8">
               <h3 className="text-lg font-semibold mb-4">Información de Contacto</h3>
               
               {/* Contact Information */}
-              <div className="space-y-4">
-                <div className="flex items-center space-x-2 text-sm group">
-                  <FaPhone className="text-green-200 group-hover:text-white transition-colors" />
-                  <a href="tel:+576726789" className="hover:text-green-200 transition-colors">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-3 text-sm group">
+                  <FaPhone className="text-emselca-yellow group-hover:text-white transition-colors h-5 w-5" />
+                  <a href="tel:+576726789" className="hover:text-emselca-yellow transition-colors">
                     (+57) 6726789
                   </a>
                 </div>
-                <div className="flex items-center space-x-2 text-sm group">
-                  <FaMapMarkerAlt className="text-green-200 group-hover:text-white transition-colors" />
-                  <span className="hover:text-green-200 transition-colors">
+                <div className="flex items-center space-x-3 text-sm group">
+                  <FaMapMarkerAlt className="text-emselca-yellow group-hover:text-white transition-colors h-5 w-5" />
+                  <span className="hover:text-emselca-yellow transition-colors">
                     Chocó, Colombia
                   </span>
                 </div>
-                <div className="flex items-center space-x-2 text-sm group">
-                  <FaClock className="text-green-200 group-hover:text-white transition-colors" />
-                  <span className="hover:text-green-200 transition-colors">
+                <div className="flex items-center space-x-3 text-sm group">
+                  <FaClock className="text-emselca-yellow group-hover:text-white transition-colors h-5 w-5" />
+                  <span className="hover:text-emselca-yellow transition-colors">
                     Lun - Vie: 8:00 - 17:00
                   </span>
                 </div>
               </div>
 
               {/* Quick Links */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold mb-2">Enlaces Rápidos</h3>
+              <div className="space-y-6">
+                <h3 className="text-lg font-semibold">Enlaces Rápidos</h3>
                 {topBarLinks.map((link) => (
                   <Link
                     key={link.name}
                     to={link.href}
-                    className="flex items-center space-x-2 text-sm group hover:text-green-200 transition-colors"
+                    className="flex items-center space-x-3 text-sm group hover:text-emselca-yellow transition-colors"
                     onClick={() => setIsTopBarOpen(false)}
                   >
-                    <link.icon className="h-4 w-4 text-green-200 group-hover:text-white transition-colors" />
+                    <link.icon className="h-5 w-5 text-emselca-yellow group-hover:text-white transition-colors" />
                     <span>{link.name}</span>
                   </Link>
                 ))}
@@ -167,7 +168,7 @@ export default function Navbar() {
         </Transition>
       </div>
 
-      {/* Overlay for mobile */}
+      {/* Overlay for mobile/tablet */}
       <Transition
         show={isTopBarOpen}
         enter="transition-opacity duration-300"
@@ -176,7 +177,7 @@ export default function Navbar() {
         leave="transition-opacity duration-300"
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
-        className="sm:hidden"
+        className="xl:hidden"
       >
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-30"
@@ -184,28 +185,26 @@ export default function Navbar() {
         />
       </Transition>
 
-      {/* Main navbar - Responsive */}
+      {/* Main navbar */}
       <Disclosure as="nav" className="bg-white shadow">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between h-16">
                 <div className="flex items-center">
-                  <Link to="/" className="flex items-center">
-                    <span className="text-xl sm:text-2xl font-bold text-green-700">EMSELCA S.A. ESP</span>
-                  </Link>
+                  <Logo />
                 </div>
 
                 {/* Desktop menu */}
-                <div className="hidden md:flex md:items-center md:space-x-8">
+                <div className="hidden xl:flex xl:items-center xl:space-x-8">
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
                       to={item.href}
                       className={`${
                         isCurrentPath(item.href)
-                          ? 'text-green-700 border-b-2 border-green-700'
-                          : 'text-gray-700 hover:text-green-700 hover:border-b-2 hover:border-green-700'
+                          ? 'text-emselca-blue border-b-2 border-emselca-blue'
+                          : 'text-gray-700 hover:text-emselca-blue hover:border-b-2 hover:border-emselca-blue'
                       } px-3 py-2 text-sm font-medium transition-all duration-200`}
                     >
                       {item.name}
@@ -213,9 +212,9 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                {/* Mobile menu button */}
-                <div className="flex items-center md:hidden">
-                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-green-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-700 transition-colors">
+                {/* Mobile/Tablet menu button */}
+                <div className="flex items-center xl:hidden">
+                  <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-emselca-blue hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emselca-blue transition-colors">
                     <span className="sr-only">Abrir menú principal</span>
                     {open ? (
                       <FaTimes className="block h-6 w-6" aria-hidden="true" />
@@ -227,7 +226,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Mobile menu panel */}
+            {/* Mobile/Tablet menu panel */}
             <Transition
               enter="transition duration-200 ease-out"
               enterFrom="transform scale-95 opacity-0"
@@ -236,8 +235,8 @@ export default function Navbar() {
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <Disclosure.Panel className="md:hidden">
-                <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg rounded-b-lg">
+              <Disclosure.Panel className="xl:hidden">
+                <div className="px-4 pt-2 pb-3 space-y-1 bg-white shadow-lg rounded-b-lg">
                   {navigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
@@ -245,9 +244,9 @@ export default function Navbar() {
                       to={item.href}
                       className={`${
                         isCurrentPath(item.href)
-                          ? 'bg-green-50 text-green-700'
-                          : 'text-gray-700 hover:bg-green-50 hover:text-green-700'
-                      } block px-3 py-2 rounded-md text-base font-medium transition-colors`}
+                          ? 'bg-emselca-blue/10 text-emselca-blue'
+                          : 'text-gray-700 hover:bg-emselca-blue/10 hover:text-emselca-blue'
+                      } block px-4 py-3 rounded-md text-base font-medium transition-colors`}
                     >
                       {item.name}
                     </Disclosure.Button>

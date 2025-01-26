@@ -26,7 +26,7 @@ export default function PQRS() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">
+        <h1 className="text-3xl font-bold text-center mb-8 text-emselca-green">
           Sistema de PQRS
         </h1>
         <p className="text-gray-600 mb-8 text-center">
@@ -42,7 +42,7 @@ export default function PQRS() {
               name="tipo"
               value={formData.tipo}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
             >
               <option value="peticion">Petición</option>
               <option value="queja">Queja</option>
@@ -61,7 +61,7 @@ export default function PQRS() {
               value={formData.nombre}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
             />
           </div>
 
@@ -75,7 +75,7 @@ export default function PQRS() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
             />
           </div>
 
@@ -88,7 +88,7 @@ export default function PQRS() {
               name="telefono"
               value={formData.telefono}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
             />
           </div>
 
@@ -102,7 +102,7 @@ export default function PQRS() {
               value={formData.asunto}
               onChange={handleChange}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
             />
           </div>
 
@@ -116,14 +116,14 @@ export default function PQRS() {
               onChange={handleChange}
               required
               rows="4"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
             ></textarea>
           </div>
 
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-emselca-green bg-emselca-yellow hover:bg-emselca-yellow-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emselca-yellow transition-colors"
             >
               Enviar PQRS
             </button>

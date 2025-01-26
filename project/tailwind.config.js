@@ -6,20 +6,36 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        green: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
-        },
+      fontFamily: {
+        sans: ['Century Gothic', 'sans-serif'],
       },
+      fontWeight: {
+        normal: '400',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
+      },
+      colors: {
+        'emselca': {
+          'blue': '#3cadbc',      // Azul turquesa
+          'yellow': '#eed820',    // Amarillo
+          'cream': '#f0f7e6',     // Crema
+          'green': '#0c7038',     // Verde oscuro
+          'green-light': '#94c385', // Verde claro
+          'gray': '#828482',      // Gris
+          'gray-blue': '#99b3af', // Gris azulado
+          'gray-light': '#bcbcbb', // Gris claro
+          'blue-light': '#65c1ce', // Versión más clara del azul turquesa
+          'yellow-light': '#f2e04d', // Versión más clara del amarillo
+        }
+      },
+      backgroundImage: {
+        'gradient-primary': 'linear-gradient(90deg, #3cadbc, #0c7038)',
+        'gradient-secondary': 'linear-gradient(180deg, #0c7038, #3cadbc)', // CTA: verde a azul
+        'gradient-accent': 'linear-gradient(90deg, #3cadbc, #eed820)',
+        'gradient-hero': 'linear-gradient(90deg, rgba(60,173,188,0.95), rgba(12,112,56,0.95))',
+        'gradient-footer': 'linear-gradient(180deg, #3cadbc, #0c7038)' // Footer: azul a verde
+      }
     },
   },
   plugins: [],

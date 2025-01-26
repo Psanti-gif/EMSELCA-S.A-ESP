@@ -3,39 +3,37 @@ import React from 'react';
 export default function Contact() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold text-center mb-12">Contacto</h1>
+      <h1 className="text-3xl font-bold text-center mb-12 text-emselca-green">Contacto</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h2 className="text-2xl font-semibold mb-6">Información de Contacto</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24">
+        <div className="md:pl-0 lg:pl-0 md:max-w-md">
+          <h2 className="text-2xl font-semibold mb-6 text-emselca-blue">Información de Contacto</h2>
           
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div>
-              <h3 className="text-lg font-medium mb-2">Dirección Principal</h3>
+              <h3 className="text-lg font-medium mb-3 text-emselca-green">Dirección Principal</h3>
               <p className="text-gray-600">
-                [Dirección de la oficina principal]<br />
+                Cl. 2ª, Acandí, Chocó<br />
                 Chocó, Colombia
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-medium mb-2">Teléfonos</h3>
+              <h3 className="text-lg font-medium mb-3 text-emselca-green">Teléfonos</h3>
               <p className="text-gray-600">
-                Línea de Atención: (+57) XXX XXX XXXX<br />
-                Emergencias: (+57) XXX XXX XXXX
+                Línea de Atención: (+57) 3225945357<br />
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-medium mb-2">Correo Electrónico</h3>
+              <h3 className="text-lg font-medium mb-3 text-emselca-green">Correo Electrónico</h3>
               <p className="text-gray-600">
-                Atención al Cliente: emselcasaesp@gmail.com<br />
-                PQRS: pqrs@emselca.com.co
+                Atención al Cliente: Emselcasasesp@gmail.com<br />
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-medium mb-2">Horario de Atención</h3>
+              <h3 className="text-lg font-medium mb-3 text-emselca-green">Horario de Atención</h3>
               <p className="text-gray-600">
                 Lunes a Viernes: 8:00 AM - 5:00 PM<br />
                 Sábados: 8:00 AM - 12:00 PM
@@ -44,8 +42,8 @@ export default function Contact() {
           </div>
         </div>
 
-        <div>
-          <h2 className="text-2xl font-semibold mb-6">Envíenos un Mensaje</h2>
+        <div className="md:pr-0 lg:pr-0 md:max-w-xl md:ml-auto">
+          <h2 className="text-2xl font-semibold mb-6 text-emselca-blue">Envíenos un Mensaje</h2>
           
           <form className="space-y-6">
             <div>
@@ -56,7 +54,7 @@ export default function Contact() {
                 type="text"
                 id="name"
                 name="name"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
                 required
               />
             </div>
@@ -69,7 +67,7 @@ export default function Contact() {
                 type="email"
                 id="email"
                 name="email"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
                 required
               />
             </div>
@@ -82,7 +80,7 @@ export default function Contact() {
                 type="text"
                 id="subject"
                 name="subject"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
                 required
               />
             </div>
@@ -95,7 +93,7 @@ export default function Contact() {
                 id="message"
                 name="message"
                 rows="4"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-emselca-blue focus:ring-emselca-blue"
                 required
               ></textarea>
             </div>
@@ -103,7 +101,7 @@ export default function Contact() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-emselca-green bg-emselca-yellow hover:bg-emselca-yellow-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emselca-yellow transition-colors"
               >
                 Enviar Mensaje
               </button>
