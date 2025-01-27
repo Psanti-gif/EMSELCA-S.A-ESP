@@ -119,7 +119,7 @@ export default function SocialMediaFeed() {
               Instagram
             </h3>
             <a
-              href="https://www.instagram.com/emselca/"
+              href="https://www.instagram.com/junior__parra/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white font-medium rounded-lg hover:from-[#7232a8] hover:via-[#e41a1a] hover:to-[#e56b2f] transition-all text-sm"
@@ -133,7 +133,7 @@ export default function SocialMediaFeed() {
               <blockquote 
                 className="instagram-media w-full" 
                 data-instgrm-captioned
-                data-instgrm-permalink="https://www.instagram.com/p/DFNg72WJebl/"
+                data-instgrm-permalink="https://www.instagram.com/p/C2xKjE_RLQJ/"
                 data-instgrm-version="14"
                 style={{ 
                   background: '#FFF',
@@ -148,7 +148,7 @@ export default function SocialMediaFeed() {
               >
                 <div style={{ padding: '16px' }}>
                   <a 
-                    href="https://www.instagram.com/p/DFNg72WJebl/" 
+                    href="https://www.instagram.com/p/C2xKjE_RLQJ/" 
                     style={{ 
                       background: '#FFFFFF',
                       lineHeight: 0,

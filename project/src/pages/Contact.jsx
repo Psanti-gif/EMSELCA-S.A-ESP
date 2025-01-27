@@ -5,15 +5,15 @@ export default function Contact() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold text-center mb-12 text-emselca-green">Contacto</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24">
-        <div className="md:pl-0 lg:pl-0 md:max-w-md">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+        <div className="md:pl-8 lg:pl-16">
           <h2 className="text-2xl font-semibold mb-6 text-emselca-blue">Información de Contacto</h2>
           
           <div className="space-y-8">
             <div>
               <h3 className="text-lg font-medium mb-3 text-emselca-green">Dirección Principal</h3>
               <p className="text-gray-600">
-                Cl. 2ª, Acandí, Chocó<br />
+                [Dirección de la oficina principal]<br />
                 Chocó, Colombia
               </p>
             </div>
@@ -21,14 +21,16 @@ export default function Contact() {
             <div>
               <h3 className="text-lg font-medium mb-3 text-emselca-green">Teléfonos</h3>
               <p className="text-gray-600">
-                Línea de Atención: (+57) 3225945357<br />
+                Línea de Atención: (+57) XXX XXX XXXX<br />
+                Emergencias: (+57) XXX XXX XXXX
               </p>
             </div>
 
             <div>
               <h3 className="text-lg font-medium mb-3 text-emselca-green">Correo Electrónico</h3>
               <p className="text-gray-600">
-                Atención al Cliente: Emselcasasesp@gmail.com<br />
+                Atención al Cliente: contacto@emselca.com.co<br />
+                PQRS: pqrs@emselca.com.co
               </p>
             </div>
 
@@ -42,7 +44,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="md:pr-0 lg:pr-0 md:max-w-xl md:ml-auto">
+        <div className="md:pr-8 lg:pr-16">
           <h2 className="text-2xl font-semibold mb-6 text-emselca-blue">Envíenos un Mensaje</h2>
           
           <form className="space-y-6">

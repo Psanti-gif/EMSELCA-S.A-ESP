@@ -9,11 +9,43 @@ export default function PQRS() {
     asunto: '',
     mensaje: '',
   });
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí se implementará la lógica para enviar a MongoDB
-    console.log('Datos del formulario:', formData);
+    try {
+      const response = await fetch('http://localhost:3002/api/pqrs', { // Actualizado a puerto 3002
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Su PQRS ha sido enviada exitosamente. Recibirá un correo de confirmación.'
+        });
+        setFormData({
+          tipo: 'peticion',
+          nombre: '',
+          email: '',
+          telefono: '',
+          asunto: '',
+          mensaje: '',
+        });
+      } else {
+        throw new Error(data.error || 'Error al enviar PQRS');
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Hubo un error al enviar su PQRS. Por favor intente nuevamente.'
+      });
+    }
   };
 
   const handleChange = (e) => {
@@ -32,6 +64,16 @@ export default function PQRS() {
         <p className="text-gray-600 mb-8 text-center">
           Presente sus Peticiones, Quejas, Reclamos o Sugerencias
         </p>
+
+        {submitStatus.message && (
+          <div className={`mb-6 p-4 rounded-lg ${
+            submitStatus.type === 'success' 
+              ? 'bg-green-100 text-green-700' 
+              : 'bg-red-100 text-red-700'
+          }`}>
+            {submitStatus.message}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-md">
           <div>

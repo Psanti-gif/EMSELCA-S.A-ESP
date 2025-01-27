@@ -55,7 +55,6 @@ export default function Home() {
         </div>
       </div>
 
-
       {/* Servicios Principales */}
       <div 
         ref={servicesRef}

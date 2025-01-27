@@ -7,13 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Century Gothic', 'sans-serif'],
-      },
-      fontWeight: {
-        normal: '400',
-        semibold: '600',
-        bold: '700',
-        extrabold: '800',
+        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
       colors: {
         'emselca': {
@@ -31,10 +25,10 @@ export default {
       },
       backgroundImage: {
         'gradient-primary': 'linear-gradient(90deg, #3cadbc, #0c7038)',
-        'gradient-secondary': 'linear-gradient(180deg, #0c7038, #3cadbc)', // CTA: verde a azul
+        'gradient-secondary': 'linear-gradient(180deg, #0c7038, #3cadbc)',
         'gradient-accent': 'linear-gradient(90deg, #3cadbc, #eed820)',
         'gradient-hero': 'linear-gradient(90deg, rgba(60,173,188,0.95), rgba(12,112,56,0.95))',
-        'gradient-footer': 'linear-gradient(180deg, #3cadbc, #0c7038)' // Footer: azul a verde
+        'gradient-footer': 'linear-gradient(180deg, #3cadbc, #0c7038)'
       }
     },
   },

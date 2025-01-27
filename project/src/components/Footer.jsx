@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
+  const handleMapClick = () => {
+    window.open('https://www.google.com/maps/place/EMSELCA+S.A+E.S.P/@8.5139279,-77.2802828,1045m/data=!3m1!1e3!4m6!3m5!1s0x8e511d1de9f255b1:0x31640bfc1f6e4ac4!8m2!3d8.513232!4d-77.2768777!16s%2Fg%2F11j2nzvqrb!5m1!1e1?hl=es&entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D', '_blank');
+  };
+
   return (
     <footer className="bg-gradient-footer text-white">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -63,8 +67,15 @@ export default function Footer() {
               © {new Date().getFullYear()} EMSELCA SAS. Todos los derechos reservados.
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0 text-sm">
-
-              <Link href="https://www.google.com/maps/place/EMSELCA+S.A+E.S.P/@8.5139279,-77.2802828,1045m/data=!3m1!1e3!4m6!3m5!1s0x8e511d1de9f255b1:0x31640bfc1f6e4ac4!8m2!3d8.513232!4d-77.2768777!16s%2Fg%2F11j2nzvqrb!5m1!1e1?hl=es&entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D" className="hover:text-emselca-yellow transition-colors">Mapa del Sitio</Link>
+              <Link to="/terminos" className="hover:text-emselca-yellow transition-colors">Términos y Condiciones</Link>
+              <Link to="/privacidad" className="hover:text-emselca-yellow transition-colors">Política de Privacidad</Link>
+              <button 
+                onClick={handleMapClick}
+                className="text-white hover:text-emselca-yellow transition-colors flex items-center"
+              >
+                <FaMapMarkerAlt className="mr-2" />
+                Ubicación
+              </button>
             </div>
           </div>
         </div>

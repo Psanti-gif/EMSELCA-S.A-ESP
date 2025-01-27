@@ -1,0 +1,110 @@
+import express from 'express';
+import db from '../config/db.js';
+import transporter from '../config/email.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const router = express.Router();
+
+// Crear tabla si no existe
+const createTableIfNotExists = async () => {
+  try {
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS pqrs (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        tipo VARCHAR(50) NOT NULL,
+        nombre VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        telefono VARCHAR(50),
+        asunto VARCHAR(255) NOT NULL,
+        mensaje TEXT NOT NULL,
+        estado VARCHAR(50) DEFAULT 'pendiente',
+        fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+        alerta_enviada BOOLEAN DEFAULT FALSE
+      )
+    `);
+    console.log('Tabla PQRS verificada/creada');
+  } catch (error) {
+    console.error('Error al crear tabla PQRS:', error);
+  }
+};
+
+// Ejecutar creación de tabla al iniciar
+createTableIfNotExists();
+
+// Ruta para crear un nuevo PQRS
+router.post('/pqrs', async (req, res) => {
+  try {
+    const { tipo, nombre, email, telefono, asunto, mensaje } = req.body;
+
+    // Validar campos requeridos
+    if (!tipo || !nombre || !email || !asunto || !mensaje) {
+      return res.status(400).json({ 
+        error: 'Todos los campos son requeridos excepto el teléfono' 
+      });
+    }
+
+    // Insertar en la base de datos
+    const [result] = await db.execute(
+      'INSERT INTO pqrs (tipo, nombre, email, telefono, asunto, mensaje) VALUES (?, ?, ?, ?, ?, ?)',
+      [tipo, nombre, email, telefono, asunto, mensaje]
+    );
+
+    // Enviar correo al usuario
+    const userMailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Confirmación de PQRS - EMSELCA',
+      html: `
+        <h1>Confirmación de PQRS</h1>
+        <p>Estimado(a) ${nombre},</p>
+        <p>Hemos recibido su ${tipo} exitosamente. A continuación el detalle de su solicitud:</p>
+        <ul>
+          <li><strong>Número de radicado:</strong> ${result.insertId}</li>
+          <li><strong>Tipo:</strong> ${tipo}</li>
+          <li><strong>Asunto:</strong> ${asunto}</li>
+          <li><strong>Fecha:</strong> ${new Date().toLocaleString()}</li>
+        </ul>
+        <p>Nos pondremos en contacto con usted pronto.</p>
+        <p>Atentamente,<br>Equipo EMSELCA</p>
+      `
+    };
+
+    // Enviar correo al administrador
+    const adminMailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.ADMIN_EMAIL,
+      subject: `Nuevo PQRS recibido - ${tipo.toUpperCase()}`,
+      html: `
+        <h1>Nuevo PQRS Recibido</h1>
+        <p><strong>Número de radicado:</strong> ${result.insertId}</p>
+        <p><strong>Tipo:</strong> ${tipo}</p>
+        <p><strong>Nombre:</strong> ${nombre}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Teléfono:</strong> ${telefono || 'No proporcionado'}</p>
+        <p><strong>Asunto:</strong> ${asunto}</p>
+        <p><strong>Mensaje:</strong></p>
+        <p>${mensaje}</p>
+      `
+    };
+
+    // Enviar ambos correos
+    await Promise.all([
+      transporter.sendMail(userMailOptions),
+      transporter.sendMail(adminMailOptions)
+    ]);
+
+    res.status(201).json({ 
+      message: 'PQRS creado exitosamente',
+      id: result.insertId 
+    });
+
+  } catch (error) {
+    console.error('Error al procesar PQRS:', error);
+    res.status(500).json({ 
+      error: 'Error al procesar su solicitud. Por favor intente nuevamente.' 
+    });
+  }
+});
+
+export default router;
