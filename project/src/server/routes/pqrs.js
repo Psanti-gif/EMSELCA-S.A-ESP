@@ -32,6 +32,68 @@ const createTableIfNotExists = async () => {
 // Ejecutar creación de tabla al iniciar
 createTableIfNotExists();
 
+// Verificar PQRS pendientes con más de 5 días
+// En la función checkOldPQRS, agrega logs:
+const checkOldPQRS = async () => {
+  try {
+    console.log('Iniciando verificación de PQRS antiguos...');
+    
+    const [pqrs] = await db.execute(`
+      SELECT * FROM pqrs 
+      WHERE estado = 'pendiente' 
+      AND alerta_enviada = FALSE
+      AND fecha_creacion <= DATE_SUB(NOW(), INTERVAL 5 DAY)
+    `);
+
+    console.log(`Se encontraron ${pqrs.length} PQRS pendientes de más de 5 días`);
+
+    for (const item of pqrs) {
+      console.log(`Enviando alerta para PQRS #${item.id}...`);
+      
+      const adminMailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.ADMIN_EMAIL,
+        subject: `⚠️ ALERTA: PQRS #${item.id} sin responder por más de 5 días`,
+        html: `
+          <h1>PQRS Pendiente por más de 5 días</h1>
+          <p><strong>Número de radicado:</strong> ${item.id}</p>
+          <p><strong>Tipo:</strong> ${item.tipo}</p>
+          <p><strong>Nombre:</strong> ${item.nombre}</p>
+          <p><strong>Email:</strong> ${item.email}</p>
+          <p><strong>Asunto:</strong> ${item.asunto}</p>
+          <p><strong>Fecha de creación:</strong> ${new Date(item.fecha_creacion).toLocaleString()}</p>
+          <p>Por favor, dar prioridad a esta solicitud.</p>
+        `
+      };
+
+      try {
+        await transporter.sendMail(adminMailOptions);
+        console.log(`✅ Alerta enviada exitosamente para PQRS #${item.id}`);
+        
+        await db.execute(
+          'UPDATE pqrs SET alerta_enviada = TRUE WHERE id = ?',
+          [item.id]
+        );
+        console.log(`✅ PQRS #${item.id} marcado como alertado`);
+      } catch (emailError) {
+        console.error('Error enviando email:', emailError);
+        console.log('Configuración de correo:', {
+          user: process.env.EMAIL_USER,
+          adminEmail: process.env.ADMIN_EMAIL
+        });
+      }
+    }
+  } catch (error) {
+    console.error('Error al verificar PQRS antiguos:', error);
+  }
+};
+
+
+// Ejecutar verificación cada 24 horas
+setInterval(checkOldPQRS, 24 * 60 * 60 * 1000);
+// Ejecutar verificación al iniciar el servidor
+checkOldPQRS();
+
 // Ruta para crear un nuevo PQRS
 router.post('/pqrs', async (req, res) => {
   try {
