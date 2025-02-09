@@ -33,11 +33,8 @@ const createTableIfNotExists = async () => {
 createTableIfNotExists();
 
 // Verificar PQRS pendientes con más de 5 días
-// En la función checkOldPQRS, agrega logs:
 const checkOldPQRS = async () => {
   try {
-    console.log('Iniciando verificación de PQRS antiguos...');
-    
     const [pqrs] = await db.execute(`
       SELECT * FROM pqrs 
       WHERE estado = 'pendiente' 
@@ -45,11 +42,8 @@ const checkOldPQRS = async () => {
       AND fecha_creacion <= DATE_SUB(NOW(), INTERVAL 5 DAY)
     `);
 
-    console.log(`Se encontraron ${pqrs.length} PQRS pendientes de más de 5 días`);
-
     for (const item of pqrs) {
-      console.log(`Enviando alerta para PQRS #${item.id}...`);
-      
+      // Enviar alerta al administrador
       const adminMailOptions = {
         from: process.env.EMAIL_USER,
         to: process.env.ADMIN_EMAIL,
@@ -66,28 +60,18 @@ const checkOldPQRS = async () => {
         `
       };
 
-      try {
-        await transporter.sendMail(adminMailOptions);
-        console.log(`✅ Alerta enviada exitosamente para PQRS #${item.id}`);
-        
-        await db.execute(
-          'UPDATE pqrs SET alerta_enviada = TRUE WHERE id = ?',
-          [item.id]
-        );
-        console.log(`✅ PQRS #${item.id} marcado como alertado`);
-      } catch (emailError) {
-        console.error('Error enviando email:', emailError);
-        console.log('Configuración de correo:', {
-          user: process.env.EMAIL_USER,
-          adminEmail: process.env.ADMIN_EMAIL
-        });
-      }
+      await transporter.sendMail(adminMailOptions);
+
+      // Marcar como alerta enviada
+      await db.execute(
+        'UPDATE pqrs SET alerta_enviada = TRUE WHERE id = ?',
+        [item.id]
+      );
     }
   } catch (error) {
     console.error('Error al verificar PQRS antiguos:', error);
   }
 };
-
 
 // Ejecutar verificación cada 24 horas
 setInterval(checkOldPQRS, 24 * 60 * 60 * 1000);

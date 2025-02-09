@@ -27,7 +27,7 @@ export default {
         'gradient-primary': 'linear-gradient(90deg, #3cadbc, #0c7038)',
         'gradient-secondary': 'linear-gradient(180deg, #0c7038, #3cadbc)',
         'gradient-accent': 'linear-gradient(90deg, #3cadbc, #eed820)',
-        'gradient-hero': 'linear-gradient(90deg, rgba(60,173,188,0.95), rgba(12,112,56,0.95))',
+        'gradient-hero': 'linear-gradient(90deg, rgba(60,173,188,0.9), rgba(60,173,188,0.7))',
         'gradient-footer': 'linear-gradient(180deg, #3cadbc, #0c7038)'
       }
     },

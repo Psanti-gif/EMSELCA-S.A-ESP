@@ -8,8 +8,7 @@ const navigation = [
   { name: 'Inicio', href: '/' },
   { name: 'Nosotros', href: '/nosotros' },
   { name: 'Servicios', href: '/servicios' },
-  { name: 'Proyectos', href: '/proyectos' },
-  { name: 'Noticias', href: '/noticias' },
+  { name: 'PQRS', href: '/pqrs' },
 ];
 
 const topBarLinks = [
@@ -31,7 +30,7 @@ export default function Navbar() {
       {/* Toggle button for top bar - Desktop version */}
       <button
         onClick={() => setIsTopBarOpen(!isTopBarOpen)}
-        className="absolute hidden xl:flex left-[42%] -translate-x-1/2 top-0 bg-emselca-blue text-white px-4 py-1 rounded-b-lg hover:bg-emselca-blue-light transition-colors items-center space-x-2 z-50"
+        className="absolute hidden xl:flex left-[45%] -translate-x-1/2 top-0 bg-emselca-blue text-white px-4 py-1 rounded-b-lg hover:bg-emselca-blue-light transition-colors items-center space-x-2 z-50"
       >
         <span className="text-sm font-medium">Información de Contacto</span>
         {isTopBarOpen ? (

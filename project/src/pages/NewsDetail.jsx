@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
 
 export default function NewsDetail() {
   const { slug } = useParams();
@@ -10,18 +9,13 @@ export default function NewsDetail() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const { data, error } = await supabase
-          .from('news')
-          .select(`
-            *,
-            news_categories (name),
-            choco_municipalities (name, region)
-          `)
-          .eq('slug', slug)
-          .single();
-
-        if (error) throw error;
-        setNews(data);
+        const response = await fetch(`http://localhost:3002/api/news/${slug}`);
+        const data = await response.json();
+        if (response.ok) {
+          setNews(data);
+        } else {
+          throw new Error(data.error);
+        }
       } catch (error) {
         console.error('Error fetching news:', error);
       } finally {
@@ -70,21 +64,21 @@ export default function NewsDetail() {
         </div>
 
         <div className="flex items-center gap-2 mb-4">
-          {news.news_categories && (
+          {news.categoria && (
             <span className="text-sm font-medium text-green-700 bg-green-100 px-2 py-1 rounded">
-              {news.news_categories.name}
+              {news.categoria}
             </span>
           )}
-          {news.choco_municipalities && (
+          {news.municipio && (
             <span className="text-sm font-medium text-blue-700 bg-blue-100 px-2 py-1 rounded">
-              {news.choco_municipalities.name} - Región {news.choco_municipalities.region}
+              {news.municipio} - Región {news.region}
             </span>
           )}
         </div>
 
-        <h1 className="text-4xl font-bold mb-4">{news.title}</h1>
+        <h1 className="text-4xl font-bold mb-4">{news.titulo}</h1>
         <p className="text-gray-600 mb-8">
-          {new Date(news.published_at).toLocaleDateString('es-CO', {
+          {new Date(news.fecha_publicacion).toLocaleDateString('es-CO', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
@@ -93,16 +87,16 @@ export default function NewsDetail() {
           })}
         </p>
 
-        {news.image_url && (
+        {news.imagen_url && (
           <img
-            src={news.image_url}
-            alt={news.title}
+            src={news.imagen_url}
+            alt={news.titulo}
             className="w-full h-96 object-cover rounded-lg mb-8"
           />
         )}
 
         <div className="prose max-w-none">
-          {news.content.split('\n').map((paragraph, index) => (
+          {news.contenido.split('\n').map((paragraph, index) => (
             <p key={index} className="mb-4 text-gray-700 leading-relaxed">
               {paragraph}
             </p>

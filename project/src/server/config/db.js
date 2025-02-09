@@ -4,23 +4,27 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'emselca_db',
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'emselca_db',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
-});
+}).promise();
 
 // Test the connection
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error('Error conectando a MySQL:', err);
-    return;
+const testConnection = async () => {
+  try {
+    const [result] = await pool.query('SELECT 1');
+    console.log('Conexión exitosa a MySQL');
+    return true;
+  } catch (error) {
+    console.error('Error conectando a MySQL:', error);
+    return false;
   }
-  console.log('Conexión exitosa a MySQL');
-  connection.release();
-});
+};
 
-export default pool.promise();
+testConnection();
+
+export default pool;

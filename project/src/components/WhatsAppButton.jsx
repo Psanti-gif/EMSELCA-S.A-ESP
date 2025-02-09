@@ -4,7 +4,7 @@ import { FaWhatsapp, FaTimes } from 'react-icons/fa';
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
   const phoneNumber = '573225945357';
-  const message = 'Hola, Te gustaría obtener más información sobre los servicios de EMSELCA.';
+  const message = 'Hola, me gustaría obtener más información sobre los servicios de EMSELCA.';
 
   const handleClick = () => {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

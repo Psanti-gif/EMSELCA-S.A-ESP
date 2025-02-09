@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function NewsList() {
+  useEffect(() => {
+    // Reinicializar el SDK de Facebook cuando el componente se monta
+    if (window.FB) {
+      window.FB.XFBML.parse();
+    }
+  }, []);
+
   return (
     <div className="fb-page" 
       data-href="https://www.facebook.com/profile.php?id=100041505426580"

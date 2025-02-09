@@ -6,20 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EMSELCA SAS - Empresa de Servicios Públicos del Chocó</title>
     <meta name="description" content="EMSELCA SAS - Empresa de Servicios Públicos del Chocó, comprometida con el desarrollo y bienestar de la comunidad" />
+    
+    <!-- Permissions Policy -->
+    <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data: blob:; frame-src 'self' https://www.google.com https://www.facebook.com https://www.instagram.com;">
   </head>
   <body>
     <div id="root"></div>
-
+    
     <!-- Facebook SDK -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" 
-      src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v18.0" 
-      nonce="random_nonce">
+      src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v18.0&appId=531879045912494">
     </script>
 
     <!-- Instagram Embed -->
     <script async src="//www.instagram.com/embed.js"></script>
-
+    
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

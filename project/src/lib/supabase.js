@@ -1,1 +1,0 @@
-// Este archivo puede ser eliminado ya que no se usará más Supabase
