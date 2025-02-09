@@ -21,16 +21,16 @@ export default function Contact() {
             <div>
               <h3 className="text-lg font-medium mb-3 text-emselca-green">Teléfonos</h3>
               <p className="text-gray-600">
-                Línea de Atención: (+57) XXX XXX XXXX<br />
-                Emergencias: (+57) XXX XXX XXXX
+                Línea de Atención: (+57) 322 5945357<br />
+                Emergencias: (+57) 322 5945357
               </p>
             </div>
 
             <div>
               <h3 className="text-lg font-medium mb-3 text-emselca-green">Correo Electrónico</h3>
               <p className="text-gray-600">
-                Atención al Cliente: contacto@emselca.com.co<br />
-                PQRS: pqrs@emselca.com.co
+
+                Atención al Cliente: Emselcasasesp@gmail.com<br />                
               </p>
             </div>
 
