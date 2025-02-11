@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="w-full overflow-x-hidden">
       {/* Hero Section */}
-      <div className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gradient-hero">
+      <div className="relative min-h-[calc(75vh-4rem)] flex items-center justify-center bg-gradient-hero">
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative z-10 flex flex-col items-center justify-center p-4">
           <img 

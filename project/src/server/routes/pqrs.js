@@ -153,4 +153,15 @@ router.post('/pqrs', async (req, res) => {
   }
 });
 
+router.get('/pqrs', async (req, res) => {
+  try {
+    const [results] = await db.execute('SELECT * FROM pqrs');
+    res.json(results);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener PQRS' });
+  }
+});
+
+
 export default router;
+

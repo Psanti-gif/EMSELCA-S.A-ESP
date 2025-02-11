@@ -10,11 +10,11 @@ export default function PQRS() {
     mensaje: '',
   });
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3002/api/pqrs', { // Actualizado a puerto 3002
+      const response = await fetch('http://localhost:3002/api/pqrs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export default function PQRS() {
       });
 
       const data = await response.json();
-      
+
       if (response.ok) {
         setSubmitStatus({
           type: 'success',
@@ -41,6 +41,7 @@ export default function PQRS() {
         throw new Error(data.error || 'Error al enviar PQRS');
       }
     } catch (error) {
+      console.error('Error:', error);
       setSubmitStatus({
         type: 'error',
         message: 'Hubo un error al enviar su PQRS. Por favor intente nuevamente.'
@@ -62,15 +63,13 @@ export default function PQRS() {
           Sistema de PQRS
         </h1>
         <p className="text-gray-600 mb-8 text-center">
-          Presente sus Peticiones, Quejas, Reclamos o Sugerencias
+          Presente sus Peticiones, Quejas, Daños, Reclamos o Sugerencias
         </p>
 
         {submitStatus.message && (
-          <div className={`mb-6 p-4 rounded-lg ${
-            submitStatus.type === 'success' 
-              ? 'bg-green-100 text-green-700' 
-              : 'bg-red-100 text-red-700'
-          }`}>
+          <div className={`mb-6 p-4 rounded-lg ${submitStatus.type === 'success'
+            ? 'bg-green-100 text-green-700'
+            : 'bg-red-100 text-red-700'}`}>
             {submitStatus.message}
           </div>
         )}
@@ -88,6 +87,7 @@ export default function PQRS() {
             >
               <option value="peticion">Petición</option>
               <option value="queja">Queja</option>
+              <option value="daños">Daños</option>
               <option value="reclamo">Reclamo</option>
               <option value="sugerencia">Sugerencia</option>
             </select>
