@@ -8,6 +8,8 @@ export default function Home() {
   const servicesRef = useRef(null);
   const mapRef = useRef(null);
 
+
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -32,16 +34,16 @@ export default function Home() {
       <div className="relative min-h-[calc(75vh-4rem)] flex items-center justify-center bg-gradient-hero">
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative z-10 flex flex-col items-center justify-center p-4">
-          <img 
-            src="/logo-hero.svg" 
-            alt="EMSELCA SAS" 
-            className="w-[150px] sm:w-[200px] md:w-[250px] lg:w-[200px] animate-float"
+          <img
+            src="/logo-hero.svg"
+            alt="EMSELCA SAS"
+            className="w-[200px] sm:w-[250px] md:w-[300px] lg:w-[550px] animate-float"
           />
         </div>
       </div>
 
       {/* Servicios */}
-      <div 
+      <div
         ref={servicesRef}
         className="py-16 sm:py-20 md:py-24 bg-gray-50 opacity-0 translate-y-[50px] transition-all duration-1000"
       >
@@ -51,7 +53,7 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
             {/* Residencial */}
-            <div 
+            <div
               className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
               onClick={() => navigate('/servicios')}
             >
@@ -65,7 +67,7 @@ export default function Home() {
             </div>
 
             {/* Comercial */}
-            <div 
+            <div
               className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
               onClick={() => navigate('/servicios')}
             >
@@ -79,7 +81,7 @@ export default function Home() {
             </div>
 
             {/* Industrial */}
-            <div 
+            <div
               className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
               onClick={() => navigate('/servicios')}
             >
@@ -103,8 +105,8 @@ export default function Home() {
       </div>
 
       {/* Ubicación */}
-      <div 
-        ref={mapRef} 
+      <div
+        ref={mapRef}
         className="py-16 sm:py-20 md:py-24 bg-gray-50 opacity-0 translate-y-[50px] transition-all duration-1000"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -114,10 +116,10 @@ export default function Home() {
               Visítanos en nuestra oficina principal.
             </p>
           </div>
-          
+
           <div className="rounded-2xl overflow-hidden shadow-2xl">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.4981814274456!2d-77.28028279999999!3d8.5139279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e511d1de9f255b1%3A0x31640bfc1f6e4ac4!2sEMSELCA%20S.A%20E.S.P!5e0!3m2!1ses!2sco!4v1706901234567!5m2!1ses!2sco"
+              src="https://www.google.com/maps/embed?pb=!4v1686251689925!6m8!1m7!1sCAoSLEFGMVFpcE1QRHRkVGZfZGVXNXRNMXRJMXRJRHZLNXRVNGZCNXRLNXRLNXRF!2m2!1d8.5132301!2d-77.2776136!3f200!4f0!5f0.7820865974627469"
               width="100%"
               height="400"
               style={{ border: 0 }}
@@ -127,6 +129,7 @@ export default function Home() {
               className="w-full sm:h-[500px] md:h-[600px]"
               title="Ubicación de EMSELCA"
             ></iframe>
+
           </div>
         </div>
       </div>

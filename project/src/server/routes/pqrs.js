@@ -14,6 +14,8 @@ const createTableIfNotExists = async () => {
         id INT AUTO_INCREMENT PRIMARY KEY,
         tipo VARCHAR(50) NOT NULL,
         nombre VARCHAR(255) NOT NULL,
+        direccion VARCHAR(255) NOT NULL,
+        codigo VARCHAR(80),
         email VARCHAR(255) NOT NULL,
         telefono VARCHAR(50),
         asunto VARCHAR(255) NOT NULL,
@@ -53,6 +55,8 @@ const checkOldPQRS = async () => {
           <p><strong>Número de radicado:</strong> ${item.id}</p>
           <p><strong>Tipo:</strong> ${item.tipo}</p>
           <p><strong>Nombre:</strong> ${item.nombre}</p>
+          <p><strong>Dirección:</strong> ${item.direccion}</p>
+          <p><strong>Código:</strong> ${item.codigo}</p>
           <p><strong>Email:</strong> ${item.email}</p>
           <p><strong>Asunto:</strong> ${item.asunto}</p>
           <p><strong>Fecha de creación:</strong> ${new Date(item.fecha_creacion).toLocaleString()}</p>
@@ -81,10 +85,10 @@ checkOldPQRS();
 // Ruta para crear un nuevo PQRS
 router.post('/pqrs', async (req, res) => {
   try {
-    const { tipo, nombre, email, telefono, asunto, mensaje } = req.body;
+    const { tipo, nombre, direccion, codigo, email, telefono, asunto, mensaje } = req.body;
 
     // Validar campos requeridos
-    if (!tipo || !nombre || !email || !asunto || !mensaje) {
+    if (!tipo || !nombre || !direccion  || !codigo || !email || !asunto || !mensaje) {
       return res.status(400).json({ 
         error: 'Todos los campos son requeridos excepto el teléfono' 
       });
@@ -92,8 +96,8 @@ router.post('/pqrs', async (req, res) => {
 
     // Insertar en la base de datos
     const [result] = await db.execute(
-      'INSERT INTO pqrs (tipo, nombre, email, telefono, asunto, mensaje) VALUES (?, ?, ?, ?, ?, ?)',
-      [tipo, nombre, email, telefono, asunto, mensaje]
+      'INSERT INTO pqrs (tipo, nombre, direccion, codigo, email, telefono, asunto, mensaje) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      [tipo, nombre, direccion, codigo, email, , telefono, asunto, mensaje]
     );
 
     // Enviar correo al usuario
@@ -104,6 +108,8 @@ router.post('/pqrs', async (req, res) => {
       html: `
         <h1>Confirmación de PQRS</h1>
         <p>Estimado(a) ${nombre},</p>
+        <p>Con la direccion: ${direccion},</p>
+        <p>Código de factura: ${codigo}</p>	
         <p>Hemos recibido su ${tipo} exitosamente. A continuación el detalle de su solicitud:</p>
         <ul>
           <li><strong>Número de radicado:</strong> ${result.insertId}</li>
@@ -126,6 +132,8 @@ router.post('/pqrs', async (req, res) => {
         <p><strong>Número de radicado:</strong> ${result.insertId}</p>
         <p><strong>Tipo:</strong> ${tipo}</p>
         <p><strong>Nombre:</strong> ${nombre}</p>
+        <p><strong>Dirección:</strong> ${direccion}</p>
+        <p><strong>Código:</strong> ${codigo || 'No proporcionado'}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Teléfono:</strong> ${telefono || 'No proporcionado'}</p>
         <p><strong>Asunto:</strong> ${asunto}</p>

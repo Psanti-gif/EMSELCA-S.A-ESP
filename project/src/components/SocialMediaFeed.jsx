@@ -138,21 +138,7 @@ export default function SocialMediaFeed() {
         </div>
       </div>
 
-      {/* Botón de actualización */}
-      <div className="flex justify-center">
-        <button
-          onClick={handleRefresh}
-          disabled={refreshing || isLoading}
-          className={`
-            flex items-center space-x-2 px-6 py-3 
-            ${(refreshing || isLoading) ? 'bg-gray-400' : 'bg-emselca-blue hover:bg-emselca-blue-light'} 
-            text-white rounded-full font-medium shadow-lg transition-all duration-300 transform hover:scale-105
-          `}
-        >
-          <FaSync className={`${(refreshing || isLoading) ? 'animate-spin' : ''}`} />
-          <span>{refreshing ? 'Actualizando...' : 'Actualizar'}</span>
-        </button>
-      </div>
+      
     </div>
   );
 }

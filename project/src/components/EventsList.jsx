@@ -5,7 +5,7 @@ export default function EventsList() {
     <div className="instagram-media">
       <blockquote 
         className="instagram-media" 
-        data-instgrm-permalink="https://www.instagram.com/junior__parra/"
+        data-instgrm-permalink="https://www.instagram.com/emselca/"
         data-instgrm-version="14"
         style={{ 
           background: '#FFF',

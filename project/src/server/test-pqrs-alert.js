@@ -7,6 +7,8 @@ async function insertTestPQRS() {
       INSERT INTO pqrs (
         tipo, 
         nombre, 
+        direccion,
+        codigo,
         email, 
         telefono, 
         asunto, 
@@ -15,6 +17,8 @@ async function insertTestPQRS() {
       ) VALUES (
         'peticion',
         'Usuario Prueba',
+        'Calle 123, 456',
+        '12345',
         'test@example.com',
         '1234567890',
         'Prueba de alerta',

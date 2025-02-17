@@ -4,6 +4,8 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
 import pqrsRoutes from './routes/pqrs.js';
+import helmet from 'helmet';
+
 
 // Configurar dotenv
 dotenv.config();
@@ -14,22 +16,28 @@ const __dirname = dirname(__filename);
 // Definir la aplicación Express
 const app = express();
 
-
-
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", 'connect.facebook.net'],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", 'data:', 'https:'],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'self'", 'https://www.facebook.com', 'https://www.instagram.com', 'https://www.google.com'],
+    },
+  })
+);
+// CORS configuration
 app.use(cors({
-  origin: ['http://localhost:3002'],
+  origin: ['http://localhost:5173'], // Allow Vite dev server
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
+  credentials: true
 }));
-
-
-app.use((req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self'; connect-src 'self' http://localhost:3002; script-src 'self' 'unsafe-inline' 'unsafe-eval';"
-  );
-  next();
-});
 
 // Middleware
 app.use(express.json());
