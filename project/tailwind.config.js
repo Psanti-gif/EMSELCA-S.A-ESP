@@ -11,10 +11,10 @@ export default {
       },
       colors: {
         'emselca': {
-          'blue': '#3cadbc',      // Azul turquesa
-          'yellow': '#eed820',    // Amarillo
+          'blue': '#3aa7df',      // Azul turquesa
+          'yellow': '#fee810',    // Amarillo
           'cream': '#f0f7e6',     // Crema
-          'green': '#0c7038',     // Verde oscuro
+          'green': '#006a37',     // Verde oscuro
           'green-light': '#94c385', // Verde claro
           'gray': '#828482',      // Gris
           'gray-blue': '#99b3af', // Gris azulado
@@ -24,11 +24,11 @@ export default {
         }
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(90deg, #3cadbc, #0c7038)',
-        'gradient-secondary': 'linear-gradient(180deg, #0c7038, #3cadbc)',
-        'gradient-accent': 'linear-gradient(90deg, #3cadbc, #eed820)',
-        'gradient-hero': 'linear-gradient(90deg, rgba(60,173,188,0.9), rgba(60,173,188,0.7))',
-        'gradient-footer': 'linear-gradient(180deg, #3cadbc, #0c7038)'
+        'gradient-primary': 'linear-gradient(90deg, #3aa7df, #006a37)',
+        'gradient-secondary': 'linear-gradient(180deg, #006a37, #3aa7df)',
+        'gradient-accent': 'linear-gradient(90deg, #3aa7df, #fee810)',
+        'gradient-hero': 'linear-gradient(90deg, rgba(58,167,223,0.9), rgba(58,167,223,0.7))',
+        'gradient-footer': 'linear-gradient(180deg, #3aa7df, #006a37)'
       }
     },
   },

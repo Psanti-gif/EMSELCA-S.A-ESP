@@ -13,7 +13,7 @@ export default function Contact() {
             <div>
               <h3 className="text-lg font-medium mb-3 text-emselca-green">Dirección Principal</h3>
               <p className="text-gray-600">
-                [Dirección de la oficina principal]<br />
+                [Cl. 2ª, Acandí, Chocó]<br />
                 Chocó, Colombia
               </p>
             </div>
@@ -21,8 +21,7 @@ export default function Contact() {
             <div>
               <h3 className="text-lg font-medium mb-3 text-emselca-green">Teléfonos</h3>
               <p className="text-gray-600">
-                Línea de Atención: (+57) XXX XXX XXXX<br />
-                Emergencias: (+57) XXX XXX XXXX
+                Línea de Atención: (+57) <br />
               </p>
             </div>
 
@@ -37,8 +36,7 @@ export default function Contact() {
             <div>
               <h3 className="text-lg font-medium mb-3 text-emselca-green">Horario de Atención</h3>
               <p className="text-gray-600">
-                Lunes a Viernes: 8:00 AM - 5:00 PM<br />
-                Sábados: 8:00 AM - 12:00 PM
+                Lunes a Viernes: 8:00 AM - 12:00 PM | 2:00 PM - 6:00 PM<br />
               </p>
             </div>
           </div>

@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaBolt, FaIndustry, FaStore } from 'react-icons/fa';
 import SocialMediaFeed from '../components/SocialMediaFeed';
 import StreetView from '../components/StreetView';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -29,10 +32,33 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 250,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    fade: true,
+  };
+
   return (
     <div className="w-full overflow-x-hidden">
       {/* Hero Section */}
-      <div className="relative min-h-[calc(75vh-4rem)] flex items-center justify-center bg-gradient-hero">
+      <div className="relative min-h-[calc(75vh-4rem)] flex items-center justify-center">
+        <Slider {...sliderSettings} className="absolute inset-0 w-full h-full">
+          <div className="w-full h-full">
+            <img src="/2.png" alt="Carousel 1" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-full h-full">
+            <img src="/Desklan.png" alt="Carousel 2" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-full h-full">
+            <img src="/2.png" alt="Carousel 3" className="w-full h-full object-cover" />
+          </div>
+        </Slider>
+        <div className="absolute inset-0 bg-gradient-hero opacity-80"></div>
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative z-10 flex flex-col items-center justify-center p-4">
           <img
