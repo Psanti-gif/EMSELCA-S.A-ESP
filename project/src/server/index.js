@@ -6,7 +6,6 @@ import dotenv from 'dotenv';
 import pqrsRoutes from './routes/pqrs.js';
 import helmet from 'helmet';
 
-
 // Configurar dotenv
 dotenv.config();
 
@@ -20,17 +19,18 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", 'connect.facebook.net'],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'connect.facebook.net'],
       styleSrc: ["'self'", "'unsafe-inline'"],
       imgSrc: ["'self'", 'data:', 'https:'],
-      connectSrc: ["'self'"],
+      connectSrc: ["'self'", 'http://emselca.com.co', 'http://emselca.com.co/api.php', 'https://emselca.com.co/instagramFeed.php'],
       fontSrc: ["'self'"],
       objectSrc: ["'none'"],
       mediaSrc: ["'self'"],
-      frameSrc: ["'self'", 'https://www.facebook.com', 'https://www.instagram.com', 'https://www.google.com'],
+      frameSrc: ["'self'", 'https://www.facebook.com', 'https://www.instagram.com', 'https://www.google.com', 'https://www.google.com/maps'],
     },
   })
 );
+
 // CORS configuration
 app.use(cors({
   origin: ['http://localhost:5173'], // Allow Vite dev server

@@ -4,17 +4,17 @@ import { FaFacebook, FaInstagram, FaSync } from 'react-icons/fa';
 export default function SocialMediaFeed() {
   const [isLoading, setIsLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [instagramPosts, setInstagramPosts] = useState([]);
 
+  // Función para cargar los feeds de las redes sociales
   useEffect(() => {
     const loadFeeds = async () => {
       setIsLoading(true);
       try {
-        if (window.FB) {
-          window.FB.XFBML.parse();
-        }
-        if (window.instgrm) {
-          window.instgrm.Embeds.process();
-        }
+        // Llamar al backend para obtener las publicaciones de Instagram
+        const response = await fetch('https://emselca.com.co/instagramFeed.php');
+        const data = await response.json();
+        setInstagramPosts(data.data); // Asumimos que la respuesta es un objeto con una propiedad `data`
       } catch (error) {
         console.error('Error loading social feeds:', error);
       } finally {
@@ -23,19 +23,16 @@ export default function SocialMediaFeed() {
     };
 
     loadFeeds();
-    const interval = setInterval(loadFeeds, 300000);
+    const interval = setInterval(loadFeeds, 300000); // Actualizar cada 5 minutos
     return () => clearInterval(interval);
   }, []);
 
   const handleRefresh = async () => {
     setRefreshing(true);
     try {
-      if (window.FB) {
-        window.FB.XFBML.parse();
-      }
-      if (window.instgrm) {
-        window.instgrm.Embeds.process();
-      }
+      const response = await fetch('https://emselca.com.co/instagramFeed.php');
+      const data = await response.json();
+      setInstagramPosts(data.data); // Actualizar las publicaciones
     } catch (error) {
       console.error('Error refreshing social feeds:', error);
     } finally {
@@ -115,30 +112,40 @@ export default function SocialMediaFeed() {
           
           {/* Contenido de Instagram */}
           <div className="p-4 min-h-[600px]">
-            <div className="instagram-media">
-              <blockquote 
-                className="instagram-media" 
-                data-instgrm-permalink="https://www.instagram.com/emselca/"
-                data-instgrm-version="14"
-                style={{ 
-                  background: '#FFF',
-                  border: 0,
-                  borderRadius: '3px',
-                  boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)',
-                  margin: '1px',
-                  maxWidth: '540px',
-                  minWidth: '326px',
-                  padding: 0,
-                  width: '99.375%',
-                  height: '600px'
-                }}
-              ></blockquote>
-            </div>
+            {isLoading ? (
+              <div>Loading...</div>
+            ) : (
+              instagramPosts.map((post) => (
+                <div key={post.id} className="mb-4">
+                  <a href={post.permalink} target="_blank" rel="noopener noreferrer">
+                    <img 
+                      src={post.media_url} 
+                      alt={post.caption} 
+                      className="w-full h-40 object-cover rounded-md"
+                    />
+                  </a>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
 
-      
+      {/* Botón de actualización */}
+      <div className="flex justify-center">
+        <button
+          onClick={handleRefresh}
+          disabled={refreshing || isLoading}
+          className={`
+            flex items-center space-x-2 px-6 py-3 
+            ${(refreshing || isLoading) ? 'bg-gray-400' : 'bg-emselca-blue hover:bg-emselca-blue-light'} 
+            text-white rounded-full font-medium shadow-lg transition-all duration-300 transform hover:scale-105
+          `}
+        >
+          <FaSync className={`${(refreshing || isLoading) ? 'animate-spin' : ''}`} />
+          <span>{refreshing ? 'Actualizando...' : 'Actualizar'}</span>
+        </button>
+      </div>
     </div>
   );
 }

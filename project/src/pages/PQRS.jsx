@@ -4,29 +4,30 @@ export default function PQRS() {
   const [formData, setFormData] = useState({
     tipo: 'peticion',
     nombre: '',
-    direccion:'',
-    codigo:'',
+    direccion: '',
+    codigo: '',
     email: '',
     telefono: '',
     asunto: '',
     mensaje: '',
   });
   const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3002/api/pqrs', {
+      const response = await fetch('https://emselca.com.co/api.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded', // Asegúrate de que el contenido sea en formato x-www-form-urlencoded
         },
-        body: JSON.stringify(formData),
+        body: new URLSearchParams(formData),  // Convertimos los datos a un formato adecuado para el servidor
       });
 
       const data = await response.json();
+      console.log('Datos recibidos:', data);
 
-      if (response.ok) {
+      if (data.status === 'success') {
         setSubmitStatus({
           type: 'success',
           message: 'Su PQRS ha sido enviada exitosamente. Recibirá un correo de confirmación.'
@@ -42,7 +43,7 @@ export default function PQRS() {
           mensaje: '',
         });
       } else {
-        throw new Error(data.error || 'Error al enviar PQRS');
+        throw new Error(data.message || 'Error al enviar PQRS');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -52,6 +53,7 @@ export default function PQRS() {
       });
     }
   };
+
 
   const handleChange = (e) => {
     setFormData({

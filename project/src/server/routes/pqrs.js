@@ -97,7 +97,7 @@ router.post('/pqrs', async (req, res) => {
     // Insertar en la base de datos
     const [result] = await db.execute(
       'INSERT INTO pqrs (tipo, nombre, direccion, codigo, email, telefono, asunto, mensaje) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-      [tipo, nombre, direccion, codigo, email, , telefono, asunto, mensaje]
+      [tipo, nombre, direccion, codigo, email, telefono, asunto, mensaje]
     );
 
     // Enviar correo al usuario

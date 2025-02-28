@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBolt, FaIndustry, FaStore } from 'react-icons/fa';
 import SocialMediaFeed from '../components/SocialMediaFeed';
+import StreetView from '../components/StreetView';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -118,17 +119,10 @@ export default function Home() {
           </div>
 
           <div className="rounded-2xl overflow-hidden shadow-2xl">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!4v1686251689925!6m8!1m7!1sCAoSLEFGMVFpcE1QRHRkVGZfZGVXNXRNMXRJMXRJRHZLNXRVNGZCNXRLNXRLNXRF!2m2!1d8.5132301!2d-77.2776136!3f200!4f0!5f0.7820865974627469"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full sm:h-[500px] md:h-[600px]"
-              title="Ubicación de EMSELCA"
-            ></iframe>
+            <div>
+            <StreetView streetViewUrl="https://www.google.com/maps/@8.5132301,-77.2776136,3a,75y,146.11h,90t/data=!3m8!1e1!3m6!1sAF1QipOTlnveT87vC4NVJbsRLhNMC6i2yfk5i2cf82JM!2e10!3e11!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipOTlnveT87vC4NVJbsRLhNMC6i2yfk5i2cf82JM%3Dw900-h600-k-no-pi0-ya139.11311914833212-ro0-fo100!7i6144!8i3072?hl=es&entry=ttu" />
+
+            </div>
 
           </div>
         </div>
